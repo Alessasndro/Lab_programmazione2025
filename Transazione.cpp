@@ -20,13 +20,20 @@ void Transazione::Showditails() const {
     } else {
         std::cout<<"[USCITA]-";
     }
-    std::cout <<"data:"<<getDataFormattata()<<" _ " <<description << " _ " << importo << " $ "<< std::endl;
+    // Aggiunto il manipolatore per la formattazione a 2 decimali
+    std::cout << "data:" << getDataFormattata() << " _ " << description << " _ "
+              << std::fixed << std::setprecision(2) << importo << " euro" << std::endl; // Corretto $ in €
 }
 
 std::string Transazione::tocsv() const {
     std::ostringstream ss;
     std::string tipo= entrata_uscita ? "ENTRATA" : "USCITA";
-    ss << tipo << "," << importo << "," <<"|"<< description << "," << data;
+
+    // Aggiunto il manipolatore per la formattazione a 2 decimali nel CSV
+    ss << std::fixed << std::setprecision(2);
+
+    // Uso le virgolette per la descrizione nel caso contenesse virgole
+    ss << tipo << "," << importo << "," << "\"" << description << "\"," << data;
     return ss.str();
 }
 
@@ -51,4 +58,3 @@ std::string Transazione::getDataFormattata() const {
     ss << std::put_time(timeinfo, "%d/%m/%Y %H:%M");
     return ss.str();
 }
-

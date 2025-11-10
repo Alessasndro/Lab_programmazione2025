@@ -5,4 +5,6 @@ set(CMAKE_CXX_STANDARD 20)
 
 add_executable(Labb main.cpp
         Transazione.cpp
-        Transazione.h)
+        Transazione.h
+        Gestore.cpp
+        Gestore.h)
