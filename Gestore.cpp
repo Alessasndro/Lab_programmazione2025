@@ -68,6 +68,7 @@ void Gestore::loadfile() {
     int count = 0;
     while (std::getline(file, line)) {
         std::stringstream ss(line);
+
         std::string tipo, importoStr, descrizioneCompleta, timestampStr;
 
         std::getline(ss, tipo, ',');
