@@ -28,15 +28,18 @@ add_executable(Labb main.cpp
 add_executable(unit_tests
         Test/test1.cpp)
 
-# Collega l'eseguibile di test alle librerie di Google Test (gtest_main)
-# e ai file di implementazione delle tue classi.
-target_link_libraries(unit_tests
-        # Target fornito da add_subdirectory(Test/googletest)
-        gtest_main
-
-        # Collega le implementazioni delle tue classi
+# COLLEZIONE DEI SORGENTI: Aggiunge i file di implementazione
+# delle classi (Transazione.cpp e Gestore.cpp) all'eseguibile di test.
+# Questo corregge l'errore di linking.
+target_sources(unit_tests PRIVATE
         Transazione.cpp
         Gestore.cpp
+)
+
+# COLLEGA LE LIBRERIE: Collega l'eseguibile di test alle librerie di Google Test.
+target_link_libraries(unit_tests PRIVATE
+        # Target fornito da add_subdirectory(Test/googletest)
+        gtest_main
 )
 
 # Assicurati che l'eseguibile di test possa trovare i file header del progetto (.h)
